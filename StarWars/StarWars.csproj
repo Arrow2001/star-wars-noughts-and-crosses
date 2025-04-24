@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\lsIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\ani.png" />
+    <None Remove="Images\empty.png" />
+    <None Remove="Images\lightsaberDiagLR.png" />
+    <None Remove="Images\obi.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\lsIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\ani.png" />
+    <Resource Include="Images\empty.png" />
+    <Resource Include="Images\lightsaberDiagLR.png" />
+    <Resource Include="Images\obi.png" />
+  </ItemGroup>
+
+</Project>
