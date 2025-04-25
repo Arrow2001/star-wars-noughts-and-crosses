@@ -18,6 +18,7 @@ namespace StarWars
         private string currentPlayer = "Obi-Wan"; // Obi-Wan Kenobi
         private string[,] board = new string[3, 3];
         private MediaPlayer player = new MediaPlayer();
+        private bool isGameActive;
         public MainWindow()
         {
             InitializeComponent();
@@ -30,8 +31,8 @@ namespace StarWars
             // 3 by 3
             for (int i = 0; i < 3; i++)
             {
-                GameGrid.RowDefinitions.Add(new RowDefinition());
-                GameGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                GameGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                GameGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             }
 
             // 9 buttons
@@ -41,8 +42,6 @@ namespace StarWars
                 {
                     var button = new Button
                     {
-                        Width = 100,
-                        Height = 100,
                         Content = new Image
                         {
                             Source = new BitmapImage(new Uri(@"pack://application:,,,/Images/empty.png")),
@@ -57,8 +56,36 @@ namespace StarWars
             }
         }
 
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            isGameActive = true;
+            EnableGameButtons(true);
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            isGameActive = false;
+            EnableGameButtons(false);
+        }
+
+        private void EnableGameButtons(bool enable)
+        {
+            foreach (var chilld in GameGrid.Children)
+            {
+                if (chilld is Button btn)
+                {
+                    btn.IsEnabled = enable;
+                }
+            }
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (!isGameActive)
+            {
+                MessageBox.Show($"Please select a mode.");
+                return;
+            }
             // gets the button
             if (sender is not Button btn)
                 return;
