@@ -55,18 +55,20 @@ namespace StarWars
                 }
             }
         }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            isGameActive = true;
-            EnableGameButtons(true);
+            if (SPRadioButton.IsChecked == true || TwoPlayerRadioButton.IsChecked == true)
+            {
+                isGameActive = true;
+                EnableGameButtons(true);
+            }
+            else
+            {
+                isGameActive = false;
+                EnableGameButtons(false);
+            }
         }
 
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            isGameActive = false;
-            EnableGameButtons(false);
-        }
 
         private void EnableGameButtons(bool enable)
         {
@@ -86,59 +88,72 @@ namespace StarWars
                 MessageBox.Show($"Please select a mode.");
                 return;
             }
-            // gets the button
-            if (sender is not Button btn)
-                return;
-            int row = Grid.GetRow(btn);
-            int col = Grid.GetColumn(btn);
 
-            if (board[row, col] != null)
-                return;
-
-            string imagePath = currentPlayer == "Obi-Wan" 
-                ? @"pack://application:,,,/Images/obi.png"
-                : @"pack://application:,,,/Images/ani.png";
-
-            btn.Content = new Image
+            if (SPRadioButton.IsChecked != true)
             {
-                Source = new BitmapImage(new Uri(imagePath)),
-                Stretch = Stretch.Uniform
-            };
+                // gets the button
+                if (sender is not Button btn)
+                    return;
+                int row = Grid.GetRow(btn);
+                int col = Grid.GetColumn(btn);
 
-            // mark the board
-            board[row, col] = currentPlayer;
-            if(checkForWin(out string winDirection))
-            {
-                try
+                if (board[row, col] != null)
+                    return;
+
+                string imagePath = currentPlayer == "Obi-Wan"
+                    ? @"pack://application:,,,/Images/obi.png"
+                    : @"pack://application:,,,/Images/ani.png";
+
+                btn.Content = new Image
                 {
-                    if (currentPlayer == "Obi-Wan")
+                    Source = new BitmapImage(new Uri(imagePath)),
+                    Stretch = Stretch.Uniform
+                };
+
+                // mark the board
+                board[row, col] = currentPlayer;
+                if (checkForWin(out string winDirection))
+                {
+                    try
                     {
-                        player.Open(new Uri("..\\sounds\\obisound.mp3", UriKind.Relative)); 
-                        player.Play();
-                    } else  if (currentPlayer == "Anakin")
-                    {
-                        player.Open(new Uri("..\\sounds\\anisound.mp3", UriKind.Relative));
-                        player.Play();
+                        if (currentPlayer == "Obi-Wan")
+                        {
+                            player.Open(new Uri("..\\sounds\\obisound.mp3", UriKind.Relative));
+                            player.Play();
+                        }
+                        else if (currentPlayer == "Anakin")
+                        {
+                            player.Open(new Uri("..\\sounds\\anisound.mp3", UriKind.Relative));
+                            player.Play();
+                        }
                     }
-                } catch  (Exception ex)
-                {
-                    MessageBox.Show($"Error playing sound: {ex.Message}");
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error playing sound: {ex.Message}");
+                    }
+                    MessageBox.Show($"{currentPlayer} wins.");
+                    ResetBoard();
+                    return;
                 }
-                MessageBox.Show($"{currentPlayer} wins.");
-                ResetBoard();
-                return;
-            }
 
-            // check for a draw
-            if(IsBoardFull())
+                // check for a draw
+                if (IsBoardFull())
+                {
+                    MessageBox.Show($"It's a tie.");
+                    ResetBoard();
+                    return;
+                }
+
+                // switch player
+                currentPlayer = currentPlayer == "Obi-Wan" ? "Anakin" : "Obi-Wan";
+            } else if (TwoPlayerRadioButton.IsChecked != false && SPRadioButton.IsChecked != false)
             {
-                MessageBox.Show($"It's a tie.");
-                ResetBoard();
-                return;
+                MessageBox.Show($"Please select a mode.");
+            } else if (SPRadioButton.IsChecked != true)
+            {
+                // self playing code
+                MessageBox.Show($"Testing to see if it works");
             }
-
-            // switch player
-            currentPlayer = currentPlayer == "Obi-Wan" ? "Anakin" : "Obi-Wan";
         }
 
         private bool checkForWin(out string direction)

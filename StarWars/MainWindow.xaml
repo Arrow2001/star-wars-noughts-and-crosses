@@ -19,23 +19,21 @@
         </Viewbox>
 
         <StackPanel Grid.Column="1" Margin="10" VerticalAlignment="Center">
-            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" 
-                      Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
-                <CheckBox.Content>
+            <RadioButton x:Name="SPRadioButton" GroupName="GameMode" Checked="RadioButton_Checked">
+                <RadioButton.Content>
                     <Border Background="Black" Padding="5">
                         <TextBlock Text="Single Player" Foreground="White" HorizontalAlignment="Center" FontSize="15"/>
                     </Border>
-                </CheckBox.Content>
-            </CheckBox>
+                </RadioButton.Content>
+            </RadioButton>
 
-            <CheckBox
-                      Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
-                <CheckBox.Content>
+            <RadioButton x:Name="TwoPlayerRadioButton" GroupName="GameMode" Checked="RadioButton_Checked">
+                <RadioButton.Content>
                     <Border Background="Black" Padding="5">
                         <TextBlock Text="2 Player" Foreground="White" HorizontalAlignment="Center" FontSize="15"/>
                     </Border>
-                </CheckBox.Content>
-            </CheckBox>
+                </RadioButton.Content>
+            </RadioButton>
         </StackPanel>
     </Grid>
 
