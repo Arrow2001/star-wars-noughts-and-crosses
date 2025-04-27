@@ -15,10 +15,18 @@
     <None Remove="Images\lightsaberDiagLR.png" />
     <None Remove="Images\obi.png" />
     <None Remove="Images\stars.png" />
+    <None Remove="sounds\anisound.mp3" />
+    <None Remove="sounds\obisound.mp3" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Images\lsIcon.ico" />
+    <Content Include="sounds\anisound.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sounds\obisound.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

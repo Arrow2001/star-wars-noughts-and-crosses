@@ -9,5 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/lsicon.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/anisound.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/obisound.mp3")]
 
 

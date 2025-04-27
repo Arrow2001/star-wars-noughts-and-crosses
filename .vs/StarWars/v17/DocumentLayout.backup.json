@@ -26,20 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "StarWars.csproj",
-              "DocumentMoniker": "C:\\Users\\Nicho\\Desktop\\Projects\\Star Wars\\StarWars\\StarWars\\StarWars.csproj",
-              "RelativeDocumentMoniker": "StarWars\\StarWars.csproj",
-              "ToolTip": "C:\\Users\\Nicho\\Desktop\\Projects\\Star Wars\\StarWars\\StarWars\\StarWars.csproj",
-              "RelativeToolTip": "StarWars\\StarWars.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-24T10:10:02.219Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -57,12 +45,24 @@
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Nicho\\Desktop\\Projects\\Star Wars\\StarWars\\StarWars\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "StarWars\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Nicho\\Desktop\\Projects\\Star Wars\\StarWars\\StarWars\\MainWindow.xaml.cs*",
-              "RelativeToolTip": "StarWars\\MainWindow.xaml.cs*",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAnwEYAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Nicho\\Desktop\\Projects\\Star Wars\\StarWars\\StarWars\\MainWindow.xaml.cs",
+              "RelativeToolTip": "StarWars\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAD4BAADAy490f8EwwCIBAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T21:51:11.568Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StarWars.csproj",
+              "DocumentMoniker": "C:\\Users\\Nicho\\Desktop\\Projects\\Star Wars\\StarWars\\StarWars\\StarWars.csproj",
+              "RelativeDocumentMoniker": "StarWars\\StarWars.csproj",
+              "ToolTip": "C:\\Users\\Nicho\\Desktop\\Projects\\Star Wars\\StarWars\\StarWars\\StarWars.csproj",
+              "RelativeToolTip": "StarWars\\StarWars.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-24T10:10:02.219Z"
             },
             {
               "$type": "Document",
@@ -73,8 +73,7 @@
               "ToolTip": "C:\\Users\\Nicho\\Desktop\\Projects\\Star Wars\\StarWars\\StarWars\\MainWindow.xaml",
               "RelativeToolTip": "StarWars\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-23T21:51:23.89Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T21:51:23.89Z"
             }
           ]
         }

@@ -20,3 +20,5 @@ C:\Users\Nicho\Desktop\Projects\Star Wars\StarWars\StarWars\obj\Debug\net8.0-win
 C:\Users\Nicho\Desktop\Projects\Star Wars\StarWars\StarWars\obj\Debug\net8.0-windows\ref\StarWars.dll
 C:\Users\Nicho\Desktop\Projects\Star Wars\StarWars\StarWars\obj\Debug\net8.0-windows\StarWars_Content.g.cs
 C:\Users\Nicho\Desktop\Projects\Star Wars\StarWars\StarWars\obj\Debug\net8.0-windows\StarWars.sourcelink.json
+C:\Users\Nicho\Desktop\Projects\Star Wars\StarWars\StarWars\bin\Debug\net8.0-windows\sounds\anisound.mp3
+C:\Users\Nicho\Desktop\Projects\Star Wars\StarWars\StarWars\bin\Debug\net8.0-windows\sounds\obisound.mp3

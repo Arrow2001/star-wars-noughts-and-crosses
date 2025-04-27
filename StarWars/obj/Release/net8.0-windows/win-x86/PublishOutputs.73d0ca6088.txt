@@ -1,4 +1,6 @@
 C:\Users\Nicho\Desktop\New folder\StarWars.pdb
+C:\Users\Nicho\Desktop\New folder\sounds\anisound.mp3
+C:\Users\Nicho\Desktop\New folder\sounds\obisound.mp3
 C:\Users\Nicho\Desktop\New folder\D3DCompiler_47_cor3.dll
 C:\Users\Nicho\Desktop\New folder\PenImc_cor3.dll
 C:\Users\Nicho\Desktop\New folder\PresentationNative_cor3.dll

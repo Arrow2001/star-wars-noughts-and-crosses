@@ -1,4 +1,5 @@
-﻿using System.Security.Policy;
+﻿using System.Drawing;
+using System.Security.Policy;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -89,11 +90,71 @@ namespace StarWars
                 return;
             }
 
-            if (SPRadioButton.IsChecked != true)
+            // single player (obi vs ani)
+            if (SPRadioButton.IsChecked == true)
             {
-                // gets the button
+                // get the clicked button
                 if (sender is not Button btn)
                     return;
+
+                int row = Grid.GetRow(btn);
+                int col = Grid.GetColumn(btn);
+
+                // prevent clicking
+                if (board[row, col] != null)
+                    return;
+
+                string imagePath = currentPlayer == "Obi-Wan"
+                    ? @"pack://application:,,,/Images/obi.png"
+                    : @"pack://application:,,,/Images/ani.png";
+
+                // mark the board
+                btn.Content = new Image
+                {
+                    Source = new BitmapImage(new Uri(imagePath)),
+                    Stretch = Stretch.Uniform
+                };
+
+                // update board
+                board[row, col] = currentPlayer;
+
+                if (checkForWin(out string winDirection))
+                {
+                    try
+                    {
+                        if (currentPlayer == "Obi-Wan")
+                        {
+                            player.Open(new Uri("pack://siteoforigin:,,,/sounds/obisound.mp3"));
+                            player.Play();
+                        } else if (currentPlayer == "Anakin")
+                        {
+                            player.Open(new Uri("pack://siteoforigin:,,,/sounds/anisound.mp3"));
+                            player.Play();
+                        }
+                    }  catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error playing sound: {ex.Message}");
+                    }
+                    MessageBox.Show($"{currentPlayer} wins!");
+                    ResetBoard();
+                    return;
+                }
+
+                if (IsBoardFull())
+                {
+                    MessageBox.Show("It's a tie.");
+                    ResetBoard();
+                    return;
+                }
+                currentPlayer = "Anakin";
+                ComputerMove();
+            } 
+            else
+            {
+                // 2 player mode
+                if (sender is not Button btn)
+                    return;
+
                 int row = Grid.GetRow(btn);
                 int col = Grid.GetColumn(btn);
 
@@ -110,7 +171,6 @@ namespace StarWars
                     Stretch = Stretch.Uniform
                 };
 
-                // mark the board
                 board[row, col] = currentPlayer;
                 if (checkForWin(out string winDirection))
                 {
@@ -118,42 +178,32 @@ namespace StarWars
                     {
                         if (currentPlayer == "Obi-Wan")
                         {
-                            player.Open(new Uri("..\\sounds\\obisound.mp3", UriKind.Relative));
+                            player.Open(new Uri("pack:siteoforigin:,,,/sounds/obi.mp3"));
                             player.Play();
-                        }
-                        else if (currentPlayer == "Anakin")
+
+                        } else if (currentPlayer == "Anakin")
                         {
-                            player.Open(new Uri("..\\sounds\\anisound.mp3", UriKind.Relative));
+                            player.Open(new Uri("pack:siteoforigin:,,,/sounds/ani.mp3"));
                             player.Play();
                         }
-                    }
-                    catch (Exception ex)
+                    } catch (Exception exc)
                     {
-                        MessageBox.Show($"Error playing sound: {ex.Message}");
+                        MessageBox.Show($"Error playing sound: {exc.Message}");
                     }
-                    MessageBox.Show($"{currentPlayer} wins.");
+                    MessageBox.Show($"{currentPlayer} wins!");
                     ResetBoard();
                     return;
                 }
-
-                // check for a draw
-                if (IsBoardFull())
+                if(IsBoardFull())
                 {
                     MessageBox.Show($"It's a tie.");
                     ResetBoard();
                     return;
                 }
 
-                // switch player
                 currentPlayer = currentPlayer == "Obi-Wan" ? "Anakin" : "Obi-Wan";
-            } else if (TwoPlayerRadioButton.IsChecked != false && SPRadioButton.IsChecked != false)
-            {
-                MessageBox.Show($"Please select a mode.");
-            } else if (SPRadioButton.IsChecked != true)
-            {
-                // self playing code
-                MessageBox.Show($"Testing to see if it works");
             }
+            
         }
 
         private bool checkForWin(out string direction)
@@ -205,11 +255,76 @@ namespace StarWars
 
             foreach (var child in GameGrid.Children)
             {
-                if (child is Button btn && btn.Content is Image  img)
+                if (child is Button btn && btn.Content is Image img)
                 {
                     img.Source = new BitmapImage(new Uri(@"pack://application:,,,/Images/empty.png"));
                 }
             }
+        }
+
+        private async void ComputerMove()
+        {
+            await Task.Delay(500);
+            List<(int row, int col)> PossibleMoves = new List<(int row, int col)>();
+
+            for (int row = 0; row < 3; row++)
+            {
+                for (int col = 0; col < 3; col++)
+                {
+                    if (board[row, col] == null)
+                    {
+                        PossibleMoves.Add((row, col));
+                    }
+                }
+            }
+
+            if (PossibleMoves.Count == 0)
+                return;  // no moves left
+
+            // move picked  at random
+            Random rnd = new Random();
+            var (moveRow, moveCol) = PossibleMoves[rnd.Next(PossibleMoves.Count)];
+
+            // get the button
+            foreach (var child in GameGrid.Children)
+            {
+                if (child is Button btn)
+                {
+                    if (Grid.GetRow(btn) == moveRow && Grid.GetColumn(btn) == moveCol)
+                    {
+                        btn.Content = new Image
+                        {
+                            Source = new BitmapImage(new Uri(@"pack://application:,,,/Images/ani.png")),
+                            Stretch = Stretch.Uniform
+                        };
+                        board[moveRow, moveCol] = "Anakin";
+                        break;
+                    }
+                }
+            }
+            if (checkForWin(out string winDirection))
+            {
+                try
+                {
+                    player.Open(new Uri("pack://siteoforigin:,,,/sounds/anisound.mp3"));
+                    player.Play();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show($"Error playing sound: {e.Message}", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                MessageBox.Show("Anakin wins!");
+                ResetBoard();
+                return;
+            }
+
+            if (IsBoardFull())
+            {
+                MessageBox.Show($"It's a tie.");
+                ResetBoard();
+                return;
+            }
+            currentPlayer = "Obi-Wan";
         }
     }
 }

@@ -480,3 +480,5 @@ C:\Users\Nicho\Desktop\Projects\Star Wars\StarWars\StarWars\obj\Release\net8.0-w
 C:\Users\Nicho\Desktop\Projects\Star Wars\StarWars\StarWars\obj\Release\net8.0-windows\win-x86\StarWars.pdb
 C:\Users\Nicho\Desktop\Projects\Star Wars\StarWars\StarWars\obj\Release\net8.0-windows\win-x86\StarWars.genruntimeconfig.cache
 C:\Users\Nicho\Desktop\Projects\Star Wars\StarWars\StarWars\obj\Release\net8.0-windows\win-x86\ref\StarWars.dll
+C:\Users\Nicho\Desktop\Projects\Star Wars\StarWars\StarWars\bin\Release\net8.0-windows\win-x86\sounds\anisound.mp3
+C:\Users\Nicho\Desktop\Projects\Star Wars\StarWars\StarWars\bin\Release\net8.0-windows\win-x86\sounds\obisound.mp3
